@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5198557715316620297}
   - component: {fileID: 7423530736942423722}
   - component: {fileID: 2071512581786838165}
-  - component: {fileID: 4353167502483982704}
+  - component: {fileID: 3712512795950477347}
   m_Layer: 5
   m_Name: Upgrade
   m_TagString: Untagged
@@ -106,7 +106,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &4353167502483982704
+--- !u!114 &3712512795950477347
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -115,7 +115,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 359944618022915272}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 75809bd1750c6214188cdd94546558a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:

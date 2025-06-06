@@ -843,6 +843,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _serializedData:
     Cfg: {fileID: 0}
+    LvlUpButton: {fileID: 4524906342132579267}
+    Upgrade1Button: {fileID: 7389674679968573374}
+    Upgrade2Button: {fileID: 8783026025812440487}
     Lvl: 0
     Upgrade1Status: 0
     Upgrade2Status: 0
@@ -1565,7 +1568,7 @@ GameObject:
   - component: {fileID: 5743462594061196619}
   - component: {fileID: 6405092765182331127}
   - component: {fileID: 5822466921798991247}
-  - component: {fileID: 3621374084398920273}
+  - component: {fileID: 4524906342132579267}
   m_Layer: 5
   m_Name: LevelUP
   m_TagString: Untagged
@@ -1658,7 +1661,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &3621374084398920273
+--- !u!114 &4524906342132579267
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1667,7 +1670,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8248123654184121849}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 75809bd1750c6214188cdd94546558a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -2033,6 +2036,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4453087243631461928, guid: 41adbddb6b3bf004e8d6ea4b1cf39e25, type: 3}
   m_PrefabInstance: {fileID: 5361233081069454724}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8783026025812440487 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3712512795950477347, guid: 41adbddb6b3bf004e8d6ea4b1cf39e25, type: 3}
+  m_PrefabInstance: {fileID: 5361233081069454724}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75809bd1750c6214188cdd94546558a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6127177323373516701
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2335,6 +2349,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7389674679968573374 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3712512795950477347, guid: 41adbddb6b3bf004e8d6ea4b1cf39e25, type: 3}
+  m_PrefabInstance: {fileID: 6127177323373516701}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75809bd1750c6214188cdd94546558a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!224 &7549317268773786037 stripped
