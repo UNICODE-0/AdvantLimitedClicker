@@ -13,11 +13,15 @@ namespace BusinessClicker.Data
         {
             business.Income = business.Lvl * business.Cfg.BasicIncome;
 
+            float percentBonus = 0;
+
             if (business.Upgrade1Status)
-                business.Income.ApplyPercent(business.Cfg.Upgrade1.IncomeMultiplier);
+                percentBonus += business.Cfg.Upgrade1.IncomeMultiplier;
                 
             if (business.Upgrade2Status)
-                business.Income.ApplyPercent(business.Cfg.Upgrade2.IncomeMultiplier);
+                percentBonus += business.Cfg.Upgrade2.IncomeMultiplier;
+
+            business.Income.ApplyPercent(percentBonus);
         }
     }
 }
