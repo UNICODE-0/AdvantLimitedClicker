@@ -16,7 +16,7 @@ namespace BusinessClicker.Systems
         
         private EcsPool<BusinessComponent> _businessPool;
         private EcsPool<BusinessViewComponent> _businessViewPool;
-        private EcsPool<BusinessUpgradeComponent> _businessUpgradePool;
+        private EcsPool<BusinessButtonsComponent> _businessButtonsPool;
         private EcsPool<BusinessUpgradeViewComponent> _businessUpgradeViewPool;
 
         private EcsPool<BusinessLvlUpEvent> _lvlUpEventPool;
@@ -28,14 +28,14 @@ namespace BusinessClicker.Systems
         {
             EcsWorld world = systems.GetWorld();
             _filter = world.Filter<BusinessViewComponent>()
-                .Inc<BusinessUpgradeComponent>()
+                .Inc<BusinessButtonsComponent>()
                 .Inc<BusinessUpgradeViewComponent>()
                 .Inc<BusinessComponent>()
                 .End();
             
             _businessPool = world.GetPool<BusinessComponent>();
             _businessViewPool = world.GetPool<BusinessViewComponent>();
-            _businessUpgradePool = world.GetPool<BusinessUpgradeComponent>();
+            _businessButtonsPool = world.GetPool<BusinessButtonsComponent>();
             _businessUpgradeViewPool = world.GetPool<BusinessUpgradeViewComponent>();
 
             _lvlUpEventPool = world.GetPool<BusinessLvlUpEvent>();
@@ -52,19 +52,19 @@ namespace BusinessClicker.Systems
             {
                 ref var business = ref _businessPool.Get(entity);
                 ref var businessView = ref _businessViewPool.Get(entity);
-                ref var businessUpgrade = ref _businessUpgradePool.Get(entity);
+                ref var businessButtons = ref _businessButtonsPool.Get(entity);
                 ref var businessUpgradeView = ref _businessUpgradeViewPool.Get(entity);
 
                 UpdateLvl(ref business, ref businessView);
             
                 UpdateUpgrade(ref business.Cfg.Upgrade1, ref businessUpgradeView.Upgrade1View,
                     _terms.Businesses[business.Cfg.Id].Upgrade1);
-                UpdateUpgradeStatus(businessUpgrade.Upgrade1Button, business.Upgrade1Status, ref business.Cfg.Upgrade1,
+                UpdateUpgradeStatus(businessButtons.Upgrade1Button, business.Upgrade1Status, ref business.Cfg.Upgrade1,
                     ref businessUpgradeView.Upgrade1View);
             
                 UpdateUpgrade(ref business.Cfg.Upgrade2, ref businessUpgradeView.Upgrade2View,
                     _terms.Businesses[business.Cfg.Id].Upgrade2);
-                UpdateUpgradeStatus(businessUpgrade.Upgrade2Button, business.Upgrade2Status, ref business.Cfg.Upgrade2,
+                UpdateUpgradeStatus(businessButtons.Upgrade2Button, business.Upgrade2Status, ref business.Cfg.Upgrade2,
                     ref businessUpgradeView.Upgrade2View);
             }
         }
@@ -86,7 +86,7 @@ namespace BusinessClicker.Systems
                 if (_upgradeEventPool.Has(entity))
                 {
                     ref var upgradeEvent = ref _upgradeEventPool.Get(entity);
-                    ref var businessUpgrade = ref _businessUpgradePool.Get(entity);
+                    ref var businessUpgrade = ref _businessButtonsPool.Get(entity);
                 
                     switch (upgradeEvent.Variant)
                     {

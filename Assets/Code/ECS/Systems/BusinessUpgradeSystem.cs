@@ -2,8 +2,6 @@ using BusinessClicker.Components;
 using BusinessClicker.Data;
 using BusinessClicker.Events;
 using Leopotam.EcsLite;
-using UnityEngine;
-using System.Collections.Generic;
 using Unity.IL2CPP.CompilerServices;
 
 namespace BusinessClicker.Systems
@@ -16,7 +14,7 @@ namespace BusinessClicker.Systems
         private EcsFilter _filter;
         
         private EcsPool<BusinessComponent> _businessPool;
-        private EcsPool<BusinessUpgradeComponent> _businessUpgradePool;
+        private EcsPool<BusinessButtonsComponent> _businessButtonsPool;
         
         private EcsPool<BusinessLvlUpEvent> _lvlUpEventPool;
         private EcsPool<BusinessUpgradeEvent> _upgradeEventPool;
@@ -28,11 +26,11 @@ namespace BusinessClicker.Systems
         {
             EcsWorld world = systems.GetWorld();
             _filter = world.Filter<BusinessComponent>()
-                .Inc<BusinessUpgradeComponent>()
+                .Inc<BusinessButtonsComponent>()
                 .End();
             
             _businessPool = world.GetPool<BusinessComponent>();
-            _businessUpgradePool = world.GetPool<BusinessUpgradeComponent>();
+            _businessButtonsPool = world.GetPool<BusinessButtonsComponent>();
             
             _lvlUpEventPool = world.GetPool<BusinessLvlUpEvent>();
             _upgradeEventPool = world.GetPool<BusinessUpgradeEvent>();
@@ -46,9 +44,9 @@ namespace BusinessClicker.Systems
             foreach (int entity in _filter) 
             {
                 ref var business = ref _businessPool.Get(entity);
-                ref var businessUpgrade = ref _businessUpgradePool.Get(entity);
+                ref var businessButtons = ref _businessButtonsPool.Get(entity);
 
-                if (businessUpgrade.LvlUpButton.ClickedThisFrame && 
+                if (businessButtons.LvlUpButton.ClickedThisFrame && 
                     _profile.Balance >= business.LvlUpPrice)
                 {
                     _profile.Balance -= business.LvlUpPrice;
@@ -57,7 +55,7 @@ namespace BusinessClicker.Systems
                     _balanceChangeEventPool.Add(entity);
                 }
 
-                if (businessUpgrade.Upgrade1Button.ClickedThisFrame &&
+                if (businessButtons.Upgrade1Button.ClickedThisFrame &&
                     _profile.Balance >= business.Cfg.Upgrade1.Price)
                 {
                     _profile.Balance -= business.Cfg.Upgrade1.Price;
@@ -66,7 +64,7 @@ namespace BusinessClicker.Systems
                     _balanceChangeEventPool.Add(entity);
                 }
 
-                if (businessUpgrade.Upgrade2Button.ClickedThisFrame &&
+                if (businessButtons.Upgrade2Button.ClickedThisFrame &&
                     _profile.Balance >= business.Cfg.Upgrade2.Price)
                 {
                     _profile.Balance -= business.Cfg.Upgrade2.Price;

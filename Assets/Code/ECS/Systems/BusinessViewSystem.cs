@@ -1,6 +1,5 @@
 using BusinessClicker.Components;
 using BusinessClicker.Data;
-using BusinessClicker.Events;
 using BusinessClicker.SO;
 using Leopotam.EcsLite;
 using Unity.IL2CPP.CompilerServices;
@@ -23,7 +22,7 @@ namespace BusinessClicker.Systems
         {
             EcsWorld world = systems.GetWorld();
             _filter = world.Filter<BusinessViewComponent>()
-                .Inc<BusinessUpgradeComponent>()
+                .Inc<BusinessButtonsComponent>()
                 .Inc<BusinessComponent>()
                 .End();
             

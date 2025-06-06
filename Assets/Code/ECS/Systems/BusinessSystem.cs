@@ -100,7 +100,9 @@ namespace BusinessClicker.Systems
         
         public void Destroy(IEcsSystems systems)
         {
+#if UNITY_EDITOR
             SaveData();
+#endif
         }
         public void Pause(IEcsSystems systems, bool status)
         {

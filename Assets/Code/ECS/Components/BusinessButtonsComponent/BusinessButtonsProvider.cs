@@ -9,7 +9,7 @@ namespace BusinessClicker.Mono.Providers
     [Il2CppSetOption(Option.DivideByZeroChecks, false)]
     
     [RequireComponent(typeof(BusinessProvider))]
-    public sealed class BusinessUpgradeProvider : MonoProvider<BusinessUpgradeComponent>
+    public sealed class BusinessButtonsProvider : MonoProvider<BusinessButtonsComponent>
     {
     }
 }

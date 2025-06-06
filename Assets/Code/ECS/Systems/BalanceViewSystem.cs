@@ -1,7 +1,6 @@
 using BusinessClicker.Components;
 using BusinessClicker.Data;
 using BusinessClicker.Events;
-using BusinessClicker.SO;
 using Leopotam.EcsLite;
 using Unity.IL2CPP.CompilerServices;
 
@@ -50,21 +49,17 @@ namespace BusinessClicker.Systems
         
         public void Run(IEcsSystems systems)
         {
-            foreach (int entity in _balanceFilter) 
-            {
-                ref var balanceView = ref _balanceViewPool.Get(entity);
-                HandleEvents(ref balanceView);
-            }
-        }
-
-        public void HandleEvents(ref BalanceViewComponent view)
-        {
             if (_balanceChangeEventFilter.GetEntitiesCount() > 0)
             {
-                UpdateBalance(ref view);
                 foreach (var entity in _balanceChangeEventFilter)
                 {
                     _balanceChangeEventPool.Del(entity);
+                }
+                
+                foreach (int entity in _balanceFilter) 
+                {
+                    ref var balanceView = ref _balanceViewPool.Get(entity);
+                    UpdateBalance(ref balanceView);
                 }
             }
         }
@@ -82,7 +77,9 @@ namespace BusinessClicker.Systems
 
         public void Destroy(IEcsSystems systems)
         {
+#if UNITY_EDITOR
             SaveData();
+#endif
         }
 
         public void Pause(IEcsSystems systems, bool status)

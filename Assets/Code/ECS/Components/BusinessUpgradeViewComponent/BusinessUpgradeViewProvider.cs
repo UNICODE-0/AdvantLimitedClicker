@@ -8,7 +8,7 @@ namespace BusinessClicker.Mono.Providers
     [Il2CppSetOption(Option.ArrayBoundsChecks, false)]
     [Il2CppSetOption(Option.DivideByZeroChecks, false)]
     
-    [RequireComponent(typeof(BusinessUpgradeProvider))]
+    [RequireComponent(typeof(BusinessButtonsProvider))]
     public sealed class BusinessUpgradeViewProvider : MonoProvider<BusinessUpgradeViewComponent>
     {
     }
