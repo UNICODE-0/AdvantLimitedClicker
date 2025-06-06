@@ -1377,6 +1377,22 @@ PrefabInstance:
       propertyPath: _serializedData.Cfg
       value: 
       objectReference: {fileID: 11400000, guid: 73394373fa1de6946822518c119b3f73, type: 2}
+    - target: {fileID: 7936165061718008277, guid: 03886b2dc37450243a3a1e5633c45d1b, type: 3}
+      propertyPath: _serializedData.LVL
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7936165061718008277, guid: 03886b2dc37450243a3a1e5633c45d1b, type: 3}
+      propertyPath: _serializedData.Lvl
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7936165061718008277, guid: 03886b2dc37450243a3a1e5633c45d1b, type: 3}
+      propertyPath: _serializedData.Upgrade1Status
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7936165061718008277, guid: 03886b2dc37450243a3a1e5633c45d1b, type: 3}
+      propertyPath: _serializedData.Upgrade2Status
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

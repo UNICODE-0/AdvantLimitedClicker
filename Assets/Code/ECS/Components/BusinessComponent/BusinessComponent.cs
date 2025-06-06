@@ -2,6 +2,7 @@ using BusinessClicker.Data;
 using BusinessClicker.SO;
 using Sirenix.OdinInspector;
 using Unity.IL2CPP.CompilerServices;
+using UnityEngine.Serialization;
 
 namespace BusinessClicker.Components
 {
@@ -14,20 +15,23 @@ namespace BusinessClicker.Components
         [Required]
         public BusinessCfg Cfg;
         
+        [MinValue(0)]
+        public int Lvl;
+        
+        public bool Upgrade1Status;
+        public bool Upgrade2Status;
+        
         [FoldoutGroup(Consts.COMPONENT_RUNTIME_FOLDOUT_NAME)]
         [ProgressBar(0, 1)]
         [ReadOnly] public float IncomeProgress;
         
         [FoldoutGroup(Consts.COMPONENT_RUNTIME_FOLDOUT_NAME)]
-        [ReadOnly] public int CurrentLVL;
+        [ReadOnly] public float Income;
         
         [FoldoutGroup(Consts.COMPONENT_RUNTIME_FOLDOUT_NAME)]
-        [ReadOnly] public int CurrentIncome;
-        
+        [ReadOnly] public float ProgressTime;
+
         [FoldoutGroup(Consts.COMPONENT_RUNTIME_FOLDOUT_NAME)]
-        [ReadOnly] public bool Upgrade1Status;
-        
-        [FoldoutGroup(Consts.COMPONENT_RUNTIME_FOLDOUT_NAME)]
-        [ReadOnly] public bool Upgrade2Status;
+        [ReadOnly] public float LvlUpPrice;
     }
 }

@@ -1,18 +1,21 @@
 using System;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace BusinessClicker.SO
 {
     [CreateAssetMenu(fileName = "BusinessCfg", menuName = "ScriptableObjects/BusinessCfg", order = 1)]
     public class BusinessCfg : ScriptableObject
     {
+        public string Name;
+        
         [Unit(Units.Second)]
         [MinValue(1)]
         public int IncomeFrequency = 3;
         
         [MinValue(1)]
-        public int BasicCost = 3;
+        public int BasicPrice = 3;
         
         [MinValue(1)]
         public int BasicIncome = 3;
@@ -29,8 +32,10 @@ namespace BusinessClicker.SO
     [Serializable]
     public class BusinessUpgrade
     {
+        public string Name;
+        
         [MinValue(1)]
-        public int Cost = 50;
+        public int Price = 50;
         
         [Unit(Units.Percent)]
         [MinValue(1)]
