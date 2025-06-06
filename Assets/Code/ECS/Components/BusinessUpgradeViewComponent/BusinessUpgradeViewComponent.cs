@@ -1,7 +1,7 @@
+using System;
 using Sirenix.OdinInspector;
 using TMPro;
 using Unity.IL2CPP.CompilerServices;
-using UnityEngine.UI;
 
 namespace BusinessClicker.Components
 {
@@ -9,21 +9,25 @@ namespace BusinessClicker.Components
     [Il2CppSetOption(Option.NullChecks, false)]
     [Il2CppSetOption(Option.ArrayBoundsChecks, false)]
     [Il2CppSetOption(Option.DivideByZeroChecks, false)]
-    public struct BusinessViewComponent
+    public struct BusinessUpgradeViewComponent
     {
         [Required]
-        public Image ProgressBar;
+        public BusinessUpgradeView Upgrade1View;
         
+        [Required]
+        public BusinessUpgradeView Upgrade2View;
+    }
+    
+    [Serializable]
+    public class BusinessUpgradeView
+    {
         [Required]
         public TMP_Text LabelField;
         
         [Required]
-        public TMP_Text LvlField;
+        public TMP_Text IncomeMultiplierField;
         
         [Required]
-        public TMP_Text IncomeField;
-        
-        [Required]
-        public TMP_Text LvlUpPriceField;
+        public TMP_Text StatusField;
     }
 }

@@ -17,6 +17,7 @@ namespace BusinessClicker.Systems
         
         private EcsPool<BusinessComponent> _businessPool;
         private EcsPool<BusinessUpgradeComponent> _businessUpgradePool;
+        
         private EcsPool<BusinessLvlUpEvent> _lvlUpEventPool;
         private EcsPool<BusinessUpgradeEvent> _upgradeEventPool;
         private EcsPool<BalanceChangeEvent> _balanceChangeEventPool;
@@ -32,6 +33,7 @@ namespace BusinessClicker.Systems
             
             _businessPool = world.GetPool<BusinessComponent>();
             _businessUpgradePool = world.GetPool<BusinessUpgradeComponent>();
+            
             _lvlUpEventPool = world.GetPool<BusinessLvlUpEvent>();
             _upgradeEventPool = world.GetPool<BusinessUpgradeEvent>();
             _balanceChangeEventPool = world.GetPool<BalanceChangeEvent>();
