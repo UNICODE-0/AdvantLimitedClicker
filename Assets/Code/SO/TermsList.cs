@@ -14,6 +14,7 @@ namespace BusinessClicker.SO
         public string Price;
         public string Purchased;
         public string Currency;
+        public string Balance;
 
         public Dictionary<int, BusinessTerms> Businesses = new();
     }

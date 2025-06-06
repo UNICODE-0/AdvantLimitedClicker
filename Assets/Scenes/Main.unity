@@ -255,7 +255,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7936165061718008277, guid: 03886b2dc37450243a3a1e5633c45d1b, type: 3}
       propertyPath: _serializedData.Lvl
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7936165061718008277, guid: 03886b2dc37450243a3a1e5633c45d1b, type: 3}
       propertyPath: _serializedData.Upgrade1Status
@@ -287,8 +287,9 @@ GameObject:
   - component: {fileID: 275800427}
   - component: {fileID: 275800429}
   - component: {fileID: 275800428}
+  - component: {fileID: 275800430}
   m_Layer: 5
-  m_Name: Price
+  m_Name: Blance
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -412,6 +413,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 275800426}
   m_CullTransparentMesh: 1
+--- !u!114 &275800430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 275800426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6e7438129c0450db167c2d40aa4eb35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _serializedData:
+    BalanceField: {fileID: 275800428}
 --- !u!1 &421216266
 GameObject:
   m_ObjectHideFlags: 0
@@ -635,7 +650,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7936165061718008277, guid: 03886b2dc37450243a3a1e5633c45d1b, type: 3}
       propertyPath: _serializedData.Lvl
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7936165061718008277, guid: 03886b2dc37450243a3a1e5633c45d1b, type: 3}
       propertyPath: _serializedData.Upgrade1Status
@@ -1071,7 +1086,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7936165061718008277, guid: 03886b2dc37450243a3a1e5633c45d1b, type: 3}
       propertyPath: _serializedData.Lvl
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7936165061718008277, guid: 03886b2dc37450243a3a1e5633c45d1b, type: 3}
       propertyPath: _serializedData.Upgrade1Status
@@ -1324,7 +1339,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7936165061718008277, guid: 03886b2dc37450243a3a1e5633c45d1b, type: 3}
       propertyPath: _serializedData.Lvl
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7936165061718008277, guid: 03886b2dc37450243a3a1e5633c45d1b, type: 3}
       propertyPath: _serializedData.Upgrade1Status

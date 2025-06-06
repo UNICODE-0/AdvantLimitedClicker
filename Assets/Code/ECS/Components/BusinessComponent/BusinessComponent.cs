@@ -2,7 +2,6 @@ using BusinessClicker.Data;
 using BusinessClicker.SO;
 using Sirenix.OdinInspector;
 using Unity.IL2CPP.CompilerServices;
-using UnityEngine.Serialization;
 
 namespace BusinessClicker.Components
 {

@@ -14,7 +14,9 @@ namespace BusinessClicker.Mono
         {
             SharedData sharedData = new SharedData()
             {
-                TermsManager = new TermsManager()
+                TermsManager = new TermsManager(),
+                Profile = new Profile(),
+                SaveManager = new SaveManager()
             };
             
             _world = EcsWorld.Default;
@@ -22,6 +24,7 @@ namespace BusinessClicker.Mono
             _systems
                 .Add (new BusinessSystem())
                 .Add (new BusinessViewSystem())
+                .Add (new BalanceViewSystem())
                 .Init();
         }
 

@@ -1,7 +1,6 @@
 using BusinessClicker.Components;
 using BusinessClicker.Data;
 using BusinessClicker.Events;
-using BusinessClicker.Mono;
 using BusinessClicker.SO;
 using Leopotam.EcsLite;
 
@@ -70,14 +69,16 @@ namespace BusinessClicker.Systems
                 
             if (_upgrade1EventPool.Has(entity))
             {
-                businessView.Upgrade1View.StatusField.text = _terms.Purchased;
+                UpdateUpgradeStatus(business.Upgrade1Button, business.Upgrade1Status, ref business.Cfg.Upgrade1,
+                    ref businessView.Upgrade1View);
                 UpdateIncome(ref business, ref businessView);
                 _upgrade1EventPool.Del(entity);
             }
                 
             if (_upgrade2EventPool.Has(entity))
             {
-                businessView.Upgrade2View.StatusField.text = _terms.Purchased;
+                UpdateUpgradeStatus(business.Upgrade2Button, business.Upgrade2Status, ref business.Cfg.Upgrade2,
+                    ref businessView.Upgrade2View);
                 UpdateIncome(ref business, ref businessView);
                 _upgrade2EventPool.Del(entity);
             }
@@ -89,10 +90,16 @@ namespace BusinessClicker.Systems
 
             UpdateProgress(ref business, ref businessView);
             UpdateLvl(ref business, ref businessView);
-            UpdateUpgradeView(business.Cfg.Upgrade1, ref businessView.Upgrade1View,
+            
+            UpdateUpgrade(ref business.Cfg.Upgrade1, ref businessView.Upgrade1View,
                 _terms.Businesses[business.Cfg.Id].Upgrade1);
-            UpdateUpgradeView(business.Cfg.Upgrade2, ref businessView.Upgrade2View,
+            UpdateUpgradeStatus(business.Upgrade1Button, business.Upgrade1Status, ref business.Cfg.Upgrade1,
+                ref businessView.Upgrade1View);
+            
+            UpdateUpgrade(ref business.Cfg.Upgrade2, ref businessView.Upgrade2View,
                 _terms.Businesses[business.Cfg.Id].Upgrade2);
+            UpdateUpgradeStatus(business.Upgrade2Button, business.Upgrade2Status, ref business.Cfg.Upgrade2,
+                ref businessView.Upgrade2View);
         }
 
         public void UpdateProgress(ref BusinessComponent business, ref BusinessViewComponent businessView)
@@ -112,11 +119,24 @@ namespace BusinessClicker.Systems
             UpdateIncome(ref business, ref businessView);
         }
         
-        private void UpdateUpgradeView(in BusinessUpgrade upgrade, ref BusinessUpgradeView view, string upgradeName)
+        private void UpdateUpgrade(ref BusinessUpgrade upgrade, ref BusinessUpgradeView view, string upgradeName)
         {
             view.LabelField.text = upgradeName;
             view.IncomeMultiplierField.text = $"{_terms.Income}: +{upgrade.IncomeMultiplier}%";
-            view.StatusField.text = $"{_terms.Price}: {upgrade.Price}{_terms.Currency}";
+        }
+
+        private void UpdateUpgradeStatus(CustomButton button, bool status, ref BusinessUpgrade upgrade, ref BusinessUpgradeView view)
+        {
+            if (status)
+            {
+                view.StatusField.text = _terms.Purchased;
+                button.interactable = false;
+            }
+            else
+            {
+                view.StatusField.text = $"{_terms.Price}: {upgrade.Price}{_terms.Currency}";
+                button.interactable = true;
+            }
         }
     }
 }
