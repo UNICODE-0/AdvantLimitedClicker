@@ -13,6 +13,7 @@ namespace BusinessClicker.Mono.Providers
         private void OnEnable()
         {
             SetOrCreateEntity();
+            Initialize();
         }
 
         private void SetOrCreateEntity()

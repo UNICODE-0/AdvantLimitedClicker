@@ -1,3 +1,4 @@
+using BusinessClicker.Systems;
 using UnityEngine;
 using Leopotam.EcsLite;
 
@@ -13,8 +14,7 @@ namespace BusinessClicker.Mono
             _world = EcsWorld.Default;
             _systems = new EcsSystems(_world);
             _systems
-                // .Add (new TestSystem1 ())
-                // .Add (new TestSystem2 ())
+                .Add (new BusinessSystem())
                 .Init();
         }
 
