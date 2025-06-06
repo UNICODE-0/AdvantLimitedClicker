@@ -24,6 +24,7 @@ namespace BusinessClicker.Mono
             _world = EcsWorld.Default;
             _systems = new EcsSystems(_world, sharedData);
             _systems
+                .Add(new BusinessUpgradeSystem())
                 .Add (new BusinessSystem())
                 .Add (new BusinessViewSystem())
                 .Add (new BalanceViewSystem())

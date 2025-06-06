@@ -43,7 +43,7 @@ namespace BusinessClicker.Systems
             
             foreach (int entity in _balanceFilter) 
             {
-                ref BalanceViewComponent balanceView = ref _balanceViewPool.Get(entity);
+                ref var balanceView = ref _balanceViewPool.Get(entity);
                 UpdateBalance(ref balanceView);
             }
         }
@@ -52,7 +52,7 @@ namespace BusinessClicker.Systems
         {
             foreach (int entity in _balanceFilter) 
             {
-                ref BalanceViewComponent balanceView = ref _balanceViewPool.Get(entity);
+                ref var balanceView = ref _balanceViewPool.Get(entity);
                 HandleEvents(ref balanceView);
             }
         }

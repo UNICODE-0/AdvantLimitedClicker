@@ -762,6 +762,7 @@ GameObject:
   - component: {fileID: 7368808904735795589}
   - component: {fileID: 629928188943749502}
   - component: {fileID: 7936165061718008277}
+  - component: {fileID: 7867511173194665863}
   - component: {fileID: 8955609058127390119}
   m_Layer: 5
   m_Name: Business
@@ -843,9 +844,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _serializedData:
     Cfg: {fileID: 0}
-    LvlUpButton: {fileID: 4524906342132579267}
-    Upgrade1Button: {fileID: 7389674679968573374}
-    Upgrade2Button: {fileID: 8783026025812440487}
     Lvl: 0
     Upgrade1Status: 0
     Upgrade2Status: 0
@@ -853,6 +851,22 @@ MonoBehaviour:
     Income: 0
     ProgressTime: 0
     LvlUpPrice: 0
+--- !u!114 &7867511173194665863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2986947726796494690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d4aea011c7c4b2493077e475d5e048b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _serializedData:
+    LvlUpButton: {fileID: 4524906342132579267}
+    Upgrade1Button: {fileID: 7389674679968573374}
+    Upgrade2Button: {fileID: 8783026025812440487}
 --- !u!114 &8955609058127390119
 MonoBehaviour:
   m_ObjectHideFlags: 0

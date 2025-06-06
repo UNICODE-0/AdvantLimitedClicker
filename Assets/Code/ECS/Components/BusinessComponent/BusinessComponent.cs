@@ -13,15 +13,6 @@ namespace BusinessClicker.Components
     {
         [Required]
         public BusinessCfg Cfg;
-        
-        [Required]
-        public CustomButton LvlUpButton;
-        
-        [Required]
-        public CustomButton Upgrade1Button;
-        
-        [Required]
-        public CustomButton Upgrade2Button;
 
         [MinValue(0)]
         public int Lvl;

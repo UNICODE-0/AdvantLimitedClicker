@@ -16,8 +16,6 @@ namespace BusinessClicker.Systems
         private EcsFilter _filter;
         
         private EcsPool<BusinessComponent> _businessPool;
-        private EcsPool<BusinessLvlUpEvent> _lvlUpEventPool;
-        private EcsPool<BusinessUpgradeEvent> _upgradeEventPool;
         private EcsPool<BalanceChangeEvent> _balanceChangeEventPool;
 
         private Profile _profile;
@@ -29,8 +27,6 @@ namespace BusinessClicker.Systems
             _filter = world.Filter<BusinessComponent>().End();
             
             _businessPool = world.GetPool<BusinessComponent>();
-            _lvlUpEventPool = world.GetPool<BusinessLvlUpEvent>();
-            _upgradeEventPool = world.GetPool<BusinessUpgradeEvent>();
             _balanceChangeEventPool = world.GetPool<BalanceChangeEvent>();
 
             var shared = systems.GetShared<SharedData>();
@@ -46,7 +42,7 @@ namespace BusinessClicker.Systems
             
             foreach (int entity in _filter)
             {
-                ref BusinessComponent business = ref _businessPool.Get(entity);
+                ref var business = ref _businessPool.Get(entity);
                 
                 if(businesses != null)
                 {
@@ -57,8 +53,8 @@ namespace BusinessClicker.Systems
                     business.Upgrade2Status = businesses[id].Upgrade2Status;
                 }
                 
-                CalculateLvlPrice(ref business);
-                CalculateIncome(ref business);
+                BusinessHelper.CalculateLvlPrice(ref business);
+                BusinessHelper.CalculateIncome(ref business);
             }
         }
 
@@ -66,9 +62,8 @@ namespace BusinessClicker.Systems
         {
             foreach (int entity in _filter) 
             {
-                ref BusinessComponent business = ref _businessPool.Get(entity);
-
-                HandleButtonClicks(ref business, entity);
+                ref var business = ref _businessPool.Get(entity);
+                
                 if (business.Lvl > 0)
                 {
                     business.ProgressTime += Time.deltaTime;
@@ -83,71 +78,6 @@ namespace BusinessClicker.Systems
                     }
                 }
             }
-        }
-        
-        private void HandleButtonClicks(ref BusinessComponent business, int entity)
-        {
-            if (business.LvlUpButton.ClickedThisFrame && 
-                _profile.Balance >= business.LvlUpPrice)
-            {
-                _profile.Balance -= business.LvlUpPrice;
-                LvlUp(ref business);
-                _lvlUpEventPool.Add(entity);
-                _balanceChangeEventPool.Add(entity);
-            }
-
-            if (business.Upgrade1Button.ClickedThisFrame &&
-                _profile.Balance >= business.Cfg.Upgrade1.Price)
-            {
-                _profile.Balance -= business.Cfg.Upgrade1.Price;
-                ApplyUpgrade1(ref business);
-                _upgradeEventPool.Add(entity).Variant = UpgradeVariant.First;
-                _balanceChangeEventPool.Add(entity);
-            }
-
-            if (business.Upgrade2Button.ClickedThisFrame &&
-                _profile.Balance >= business.Cfg.Upgrade2.Price)
-            {
-                _profile.Balance -= business.Cfg.Upgrade2.Price;
-                ApplyUpgrade2(ref business);
-                _upgradeEventPool.Add(entity).Variant = UpgradeVariant.Second;
-                _balanceChangeEventPool.Add(entity);
-            }
-        }
-        
-        private void ApplyUpgrade1(ref BusinessComponent business)
-        {
-            business.Upgrade1Status = true;
-            CalculateIncome(ref business);
-        }
-        
-        private void ApplyUpgrade2(ref BusinessComponent business)
-        {
-            business.Upgrade2Status = true;
-            CalculateIncome(ref business);
-        }
-        
-        private void LvlUp(ref BusinessComponent business)
-        {
-            business.Lvl += 1;
-            CalculateLvlPrice(ref business);
-            CalculateIncome(ref business);
-        }
-
-        private void CalculateLvlPrice(ref BusinessComponent business)
-        {
-            business.LvlUpPrice = (business.Lvl + 1) * business.Cfg.BasicPrice;
-        }
-        
-        private void CalculateIncome(ref BusinessComponent business)
-        {
-            business.Income = business.Lvl * business.Cfg.BasicIncome;
-
-            if (business.Upgrade1Status)
-                business.Income.ApplyPercent(business.Cfg.Upgrade1.IncomeMultiplier);
-                
-            if (business.Upgrade2Status)
-                business.Income.ApplyPercent(business.Cfg.Upgrade2.IncomeMultiplier);
         }
         
         public void SaveData()
