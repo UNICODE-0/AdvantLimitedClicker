@@ -1,4 +1,4 @@
 # Тестовое задание для AdvantLimited
 Затраченное время ~10 часов
 
-<img src="https://github.com/user-attachments/assets/f7fb33a8-d462-4be0-adf7-f08a614f67b1" width=50% height=50%>
+<img src="https://github.com/user-attachments/assets/962befda-e85f-4188-8ccf-33aa4aee019f" width=50% height=50%>
