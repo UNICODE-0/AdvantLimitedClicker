@@ -5,13 +5,13 @@ namespace BusinessClicker.Data
 {
     public class TermsManager
     {
-        private const string TABLE_NAME = "TermsList";
+        private const string LIST_NAME = "TermsList";
 
         public TermsListSO TermsList { get; }
 
         public TermsManager()
         {
-            TermsList = Resources.Load<TermsListSO>(TABLE_NAME);
+            TermsList = Resources.Load<TermsListSO>(LIST_NAME);
         }
     }
 }

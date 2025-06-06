@@ -12,8 +12,6 @@ namespace BusinessClicker.Mono
 
         private void Start()
         {
-            Application.targetFrameRate = 120;
-            
             SharedData sharedData = new SharedData()
             {
                 TermsManager = new TermsManager(),

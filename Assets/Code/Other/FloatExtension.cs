@@ -1,5 +1,3 @@
-using System.Globalization;
-
 namespace BusinessClicker.Data
 {
     public static class FloatExtension

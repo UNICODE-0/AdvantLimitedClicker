@@ -86,18 +86,18 @@ namespace BusinessClicker.Systems
                 if (_upgradeEventPool.Has(entity))
                 {
                     ref var upgradeEvent = ref _upgradeEventPool.Get(entity);
-                    ref var businessUpgrade = ref _businessButtonsPool.Get(entity);
+                    ref var businessButtons = ref _businessButtonsPool.Get(entity);
                 
                     switch (upgradeEvent.Variant)
                     {
                         case UpgradeVariant.First:
-                            UpdateUpgradeStatus(businessUpgrade.Upgrade1Button, business.Upgrade1Status, ref business.Cfg.Upgrade1,
+                            UpdateUpgradeStatus(businessButtons.Upgrade1Button, business.Upgrade1Status, ref business.Cfg.Upgrade1,
                                 ref businessUpgradeView.Upgrade1View);
                             UpdateIncome(ref business, ref businessView);
                             _upgradeEventPool.Del(entity);
                             break;
                         case UpgradeVariant.Second:
-                            UpdateUpgradeStatus(businessUpgrade.Upgrade2Button, business.Upgrade2Status, ref business.Cfg.Upgrade2,
+                            UpdateUpgradeStatus(businessButtons.Upgrade2Button, business.Upgrade2Status, ref business.Cfg.Upgrade2,
                                 ref businessUpgradeView.Upgrade2View);
                             UpdateIncome(ref business, ref businessView);
                             break;
