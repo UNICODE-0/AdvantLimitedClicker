@@ -21,4 +21,4 @@ MonoBehaviour:
     IncomeMultiplier: 50
   Upgrade2:
     Price: 400
-    IncomeMultiplier: 50
+    IncomeMultiplier: 100
