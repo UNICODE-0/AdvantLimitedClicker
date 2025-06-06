@@ -1,5 +1,6 @@
-using System.Globalization;
 using BusinessClicker.Components;
+using BusinessClicker.Data;
+using BusinessClicker.SO;
 using Leopotam.EcsLite;
 
 namespace BusinessClicker.Systems
@@ -20,6 +21,8 @@ namespace BusinessClicker.Systems
             
             _businessPool = world.GetPool<BusinessComponent>();
             _businessViewPool = world.GetPool<BusinessViewComponent>();
+            
+            InitializeViews();
         }
 
         public void Run(IEcsSystems systems)
@@ -28,28 +31,63 @@ namespace BusinessClicker.Systems
             {
                 ref BusinessComponent business = ref _businessPool.Get(entity);
                 ref BusinessViewComponent businessView = ref _businessViewPool.Get(entity);
-
-                businessView.ProgressBar.fillAmount = business.IncomeProgress;
-
-                businessView.LabelField.text = business.Cfg.Name;
-                businessView.LvlField.text = business.Lvl.ToString();
-                businessView.IncomeField.text = business.Income.ToString(CultureInfo.InvariantCulture);
-                businessView.LvlUpPriceField.text = business.LvlUpPrice.ToString(CultureInfo.InvariantCulture);
                 
-                businessView.Upgrade1View.LabelField.text = business.Cfg.Upgrade1.Name;
-                businessView.Upgrade1View.IncomeMultiplierField.text =
-                    business.Cfg.Upgrade1.IncomeMultiplier.ToString(CultureInfo.InvariantCulture);
-                businessView.Upgrade1View.StatusField.text =
-                    business.Cfg.Upgrade1.Price.ToString(CultureInfo.InvariantCulture);
-                
-                businessView.Upgrade2View.LabelField.text = business.Cfg.Upgrade2.Name;
-                businessView.Upgrade2View.IncomeMultiplierField.text =
-                    business.Cfg.Upgrade2.IncomeMultiplier.ToString(CultureInfo.InvariantCulture);
-                businessView.Upgrade2View.StatusField.text =
-                    business.Cfg.Upgrade2.Price.ToString(CultureInfo.InvariantCulture);
-                
-                
+                UpdateProgress(ref business, ref businessView);
             }
+        }
+
+        private void InitializeViews()
+        {
+            foreach (int entity in _filter)
+            {
+                ref BusinessComponent business = ref _businessPool.Get(entity);
+                ref BusinessViewComponent businessView = ref _businessViewPool.Get(entity);
+                
+                UpdateAll(ref business, ref businessView);
+            }
+        }
+
+        private void UpdateAll(ref BusinessComponent business, ref BusinessViewComponent businessView)
+        {
+            UpdateProgress(ref business, ref businessView);
+            UpdateLabel(ref business, ref businessView);
+            UpdateLvl(ref business, ref businessView);
+            UpdateIncome(ref business, ref businessView);
+            UpdateLvlUpPrice(ref business, ref businessView);
+            UpdateUpgrade(ref business.Cfg.Upgrade1, ref businessView.Upgrade1View);
+            UpdateUpgrade(ref business.Cfg.Upgrade2, ref businessView.Upgrade2View);
+        }
+        
+        private void UpdateProgress(ref BusinessComponent business, ref BusinessViewComponent businessView)
+        {
+            businessView.ProgressBar.fillAmount = business.IncomeProgress;
+        }
+        
+        private void UpdateLabel(ref BusinessComponent business, ref BusinessViewComponent businessView)
+        {
+            businessView.LabelField.text = business.Cfg.Name;
+        }
+        
+        private void UpdateLvl(ref BusinessComponent business, ref BusinessViewComponent businessView)
+        {
+            businessView.LvlField.text = business.Lvl.ToString();
+        }
+        
+        private void UpdateIncome(ref BusinessComponent business, ref BusinessViewComponent businessView)
+        {
+            businessView.IncomeField.text = business.Income.ToInvariantString();
+        }
+        
+        private void UpdateLvlUpPrice(ref BusinessComponent business, ref BusinessViewComponent businessView)
+        {
+            businessView.LvlUpPriceField.text = business.LvlUpPrice.ToInvariantString();
+        }
+        
+        private void UpdateUpgrade(ref BusinessUpgrade upgrade, ref BusinessUpgradeView view)
+        {
+            view.LabelField.text = upgrade.Name;
+            view.IncomeMultiplierField.text = upgrade.IncomeMultiplier.ToInvariantString();
+            view.StatusField.text = upgrade.Price.ToInvariantString();
         }
     }
 }

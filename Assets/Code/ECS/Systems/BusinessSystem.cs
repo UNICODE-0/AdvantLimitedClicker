@@ -15,6 +15,8 @@ namespace BusinessClicker.Systems
             EcsWorld world = systems.GetWorld();
             _filter = world.Filter<BusinessComponent>().End();
             _businessPool = world.GetPool<BusinessComponent>();
+
+            InitializeBusinesses();
         }
 
         public void Run(IEcsSystems systems)
@@ -22,7 +24,22 @@ namespace BusinessClicker.Systems
             foreach (int entity in _filter) 
             {
                 ref BusinessComponent business = ref _businessPool.Get(entity);
+                
                 business.ProgressTime += Time.deltaTime;
+                if (business.IncomeProgress >= 1f)
+                {
+                    business.ProgressTime = 0;
+                    business.IncomeProgress = 0;
+                }
+            }
+        }
+
+        private void InitializeBusinesses()
+        {
+            foreach (int entity in _filter)
+            {
+                ref BusinessComponent business = ref _businessPool.Get(entity);
+                
                 business.IncomeProgress = business.ProgressTime / business.Cfg.IncomeFrequency;
 
                 business.Income = business.Lvl * business.Cfg.BasicIncome;
@@ -34,12 +51,6 @@ namespace BusinessClicker.Systems
                     business.Income.ApplyPercent(business.Cfg.Upgrade2.IncomeMultiplier);
 
                 business.LvlUpPrice = (business.Lvl + 1) * business.Cfg.BasicPrice;
-
-                if (business.IncomeProgress >= 1f)
-                {
-                    business.ProgressTime = 0;
-                    business.IncomeProgress = 0;
-                }
             }
         }
     }

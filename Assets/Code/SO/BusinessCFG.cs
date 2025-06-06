@@ -1,7 +1,6 @@
 using System;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace BusinessClicker.SO
 {
@@ -12,13 +11,13 @@ namespace BusinessClicker.SO
         
         [Unit(Units.Second)]
         [MinValue(1)]
-        public int IncomeFrequency = 3;
+        public float IncomeFrequency = 3;
         
         [MinValue(1)]
-        public int BasicPrice = 3;
+        public float BasicPrice = 3;
         
         [MinValue(1)]
-        public int BasicIncome = 3;
+        public float BasicIncome = 3;
         
         [BoxGroup("Upgrade 1")]
         [HideLabel]
@@ -35,11 +34,11 @@ namespace BusinessClicker.SO
         public string Name;
         
         [MinValue(1)]
-        public int Price = 50;
+        public float Price = 50;
         
         [Unit(Units.Percent)]
         [MinValue(1)]
-        public int IncomeMultiplier = 50;
+        public float IncomeMultiplier = 50;
 
     }
 }
