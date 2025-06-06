@@ -4,17 +4,20 @@ using BusinessClicker.Events;
 using Leopotam.EcsLite;
 using UnityEngine;
 using System.Collections.Generic;
+using Unity.IL2CPP.CompilerServices;
 
 namespace BusinessClicker.Systems
 {
-    public class BusinessSystem : IEcsInitSystem, IEcsRunSystem, IEcsDestroySystem
+    [Il2CppSetOption(Option.NullChecks, false)]
+    [Il2CppSetOption(Option.ArrayBoundsChecks, false)]
+    [Il2CppSetOption(Option.DivideByZeroChecks, false)]
+    public class BusinessSystem : IEcsInitSystem, IEcsRunSystem, IEcsDestroySystem, IEcsApplicationPauseSystem
     {
         private EcsFilter _filter;
         
         private EcsPool<BusinessComponent> _businessPool;
         private EcsPool<BusinessLvlUpEvent> _lvlUpEventPool;
-        private EcsPool<BusinessUpgrade1Event> _upgrade1EventPool;
-        private EcsPool<BusinessUpgrade2Event> _upgrade2EventPool;
+        private EcsPool<BusinessUpgradeEvent> _upgradeEventPool;
         private EcsPool<BalanceChangeEvent> _balanceChangeEventPool;
 
         private Profile _profile;
@@ -27,8 +30,7 @@ namespace BusinessClicker.Systems
             
             _businessPool = world.GetPool<BusinessComponent>();
             _lvlUpEventPool = world.GetPool<BusinessLvlUpEvent>();
-            _upgrade1EventPool = world.GetPool<BusinessUpgrade1Event>();
-            _upgrade2EventPool = world.GetPool<BusinessUpgrade2Event>();
+            _upgradeEventPool = world.GetPool<BusinessUpgradeEvent>();
             _balanceChangeEventPool = world.GetPool<BalanceChangeEvent>();
 
             var shared = systems.GetShared<SharedData>();
@@ -99,7 +101,7 @@ namespace BusinessClicker.Systems
             {
                 _profile.Balance -= business.Cfg.Upgrade1.Price;
                 ApplyUpgrade1(ref business);
-                _upgrade1EventPool.Add(entity);
+                _upgradeEventPool.Add(entity).Variant = UpgradeVariant.First;
                 _balanceChangeEventPool.Add(entity);
             }
 
@@ -108,7 +110,7 @@ namespace BusinessClicker.Systems
             {
                 _profile.Balance -= business.Cfg.Upgrade2.Price;
                 ApplyUpgrade2(ref business);
-                _upgrade2EventPool.Add(entity);
+                _upgradeEventPool.Add(entity).Variant = UpgradeVariant.Second;
                 _balanceChangeEventPool.Add(entity);
             }
         }
@@ -147,8 +149,8 @@ namespace BusinessClicker.Systems
             if (business.Upgrade2Status)
                 business.Income.ApplyPercent(business.Cfg.Upgrade2.IncomeMultiplier);
         }
-
-        public void Destroy(IEcsSystems systems)
+        
+        public void SaveData()
         {
             Dictionary<int, BusinessSaveData> saveData = new Dictionary<int, BusinessSaveData>();
             foreach (int entity in _filter)
@@ -164,6 +166,15 @@ namespace BusinessClicker.Systems
             }
 
             _saveManager.SaveBusinesses(saveData);
+        }
+        
+        public void Destroy(IEcsSystems systems)
+        {
+            SaveData();
+        }
+        public void Pause(IEcsSystems systems, bool status)
+        {
+            if(status) SaveData();
         }
     }
 }

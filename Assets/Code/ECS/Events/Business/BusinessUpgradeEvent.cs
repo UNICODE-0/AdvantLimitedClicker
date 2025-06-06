@@ -1,13 +1,18 @@
-using BusinessClicker.Components;
 using Unity.IL2CPP.CompilerServices;
 
-namespace BusinessClicker.Mono.Providers
+namespace BusinessClicker.Events
 {
     [Il2CppSetOption(Option.NullChecks, false)]
     [Il2CppSetOption(Option.ArrayBoundsChecks, false)]
     [Il2CppSetOption(Option.DivideByZeroChecks, false)]
-    
-    public sealed class BalanceViewProvider : MonoProvider<BalanceViewComponent>
+    public struct BusinessUpgradeEvent
     {
+        public UpgradeVariant Variant;
+    }
+
+    public enum UpgradeVariant
+    {
+        First,
+        Second
     }
 }

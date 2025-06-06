@@ -3,9 +3,13 @@ using BusinessClicker.Data;
 using BusinessClicker.Events;
 using BusinessClicker.SO;
 using Leopotam.EcsLite;
+using Unity.IL2CPP.CompilerServices;
 
 namespace BusinessClicker.Systems
 {
+    [Il2CppSetOption(Option.NullChecks, false)]
+    [Il2CppSetOption(Option.ArrayBoundsChecks, false)]
+    [Il2CppSetOption(Option.DivideByZeroChecks, false)]
     public class BusinessViewSystem : IEcsInitSystem, IEcsRunSystem
     {
         private EcsFilter _filter;
@@ -13,8 +17,7 @@ namespace BusinessClicker.Systems
         private EcsPool<BusinessComponent> _businessPool;
         private EcsPool<BusinessViewComponent> _businessViewPool;
         private EcsPool<BusinessLvlUpEvent> _lvlUpEventPool;
-        private EcsPool<BusinessUpgrade1Event> _upgrade1EventPool;
-        private EcsPool<BusinessUpgrade2Event> _upgrade2EventPool;
+        private EcsPool<BusinessUpgradeEvent> _upgradeEventPool;
 
         private TermsListSO _terms;
 
@@ -28,8 +31,7 @@ namespace BusinessClicker.Systems
             _businessPool = world.GetPool<BusinessComponent>();
             _businessViewPool = world.GetPool<BusinessViewComponent>();
             _lvlUpEventPool = world.GetPool<BusinessLvlUpEvent>();
-            _upgrade1EventPool = world.GetPool<BusinessUpgrade1Event>();
-            _upgrade2EventPool = world.GetPool<BusinessUpgrade2Event>();
+            _upgradeEventPool = world.GetPool<BusinessUpgradeEvent>();
             
             _terms = systems.GetShared<SharedData>().TermsManager.TermsList; 
             
@@ -67,20 +69,25 @@ namespace BusinessClicker.Systems
                 _lvlUpEventPool.Del(entity);
             }
                 
-            if (_upgrade1EventPool.Has(entity))
+            if (_upgradeEventPool.Has(entity))
             {
-                UpdateUpgradeStatus(business.Upgrade1Button, business.Upgrade1Status, ref business.Cfg.Upgrade1,
-                    ref businessView.Upgrade1View);
-                UpdateIncome(ref business, ref businessView);
-                _upgrade1EventPool.Del(entity);
-            }
+                ref var upgradeEvent = ref _upgradeEventPool.Get(entity);
+                switch (upgradeEvent.Variant)
+                {
+                    case UpgradeVariant.First:
+                        UpdateUpgradeStatus(business.Upgrade1Button, business.Upgrade1Status, ref business.Cfg.Upgrade1,
+                            ref businessView.Upgrade1View);
+                        UpdateIncome(ref business, ref businessView);
+                        _upgradeEventPool.Del(entity);
+                        break;
+                    case UpgradeVariant.Second:
+                        UpdateUpgradeStatus(business.Upgrade2Button, business.Upgrade2Status, ref business.Cfg.Upgrade2,
+                            ref businessView.Upgrade2View);
+                        UpdateIncome(ref business, ref businessView);
+                        break;
+                }
                 
-            if (_upgrade2EventPool.Has(entity))
-            {
-                UpdateUpgradeStatus(business.Upgrade2Button, business.Upgrade2Status, ref business.Cfg.Upgrade2,
-                    ref businessView.Upgrade2View);
-                UpdateIncome(ref business, ref businessView);
-                _upgrade2EventPool.Del(entity);
+                _upgradeEventPool.Del(entity);
             }
         }
 

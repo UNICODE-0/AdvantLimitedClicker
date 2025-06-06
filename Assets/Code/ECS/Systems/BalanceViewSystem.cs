@@ -3,10 +3,14 @@ using BusinessClicker.Data;
 using BusinessClicker.Events;
 using BusinessClicker.SO;
 using Leopotam.EcsLite;
+using Unity.IL2CPP.CompilerServices;
 
 namespace BusinessClicker.Systems
 {
-    public class BalanceViewSystem : IEcsInitSystem, IEcsRunSystem, IEcsDestroySystem
+    [Il2CppSetOption(Option.NullChecks, false)]
+    [Il2CppSetOption(Option.ArrayBoundsChecks, false)]
+    [Il2CppSetOption(Option.DivideByZeroChecks, false)]
+    public class BalanceViewSystem : IEcsInitSystem, IEcsRunSystem, IEcsDestroySystem, IEcsApplicationPauseSystem
     {
         private EcsFilter _balanceFilter;
         private EcsFilter _balanceChangeEventFilter;
@@ -71,9 +75,19 @@ namespace BusinessClicker.Systems
                 $"{_shared.TermsManager.TermsList.Balance}: {_shared.Profile.Balance}{_shared.TermsManager.TermsList.Currency}";
         }
 
-        public void Destroy(IEcsSystems systems)
+        public void SaveData()
         {
             _shared.SaveManager.SaveBalance(_shared.Profile.Balance);
+        }
+
+        public void Destroy(IEcsSystems systems)
+        {
+            SaveData();
+        }
+
+        public void Pause(IEcsSystems systems, bool status)
+        {
+            if (status) SaveData();
         }
     }
 }

@@ -8,10 +8,5 @@ namespace BusinessClicker.Data
         {
             target *= percent / 100 + 1;
         }
-        
-        public static string ToInvariantString(this float target)
-        {
-            return target.ToString(CultureInfo.InvariantCulture);
-        }
     }
 }
