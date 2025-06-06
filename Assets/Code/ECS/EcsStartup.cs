@@ -1,3 +1,4 @@
+using BusinessClicker.Data;
 using BusinessClicker.Systems;
 using UnityEngine;
 using Leopotam.EcsLite;
@@ -11,8 +12,13 @@ namespace BusinessClicker.Mono
 
         private void Start()
         {
+            SharedData sharedData = new SharedData()
+            {
+                TermsManager = new TermsManager()
+            };
+            
             _world = EcsWorld.Default;
-            _systems = new EcsSystems(_world);
+            _systems = new EcsSystems(_world, sharedData);
             _systems
                 .Add (new BusinessSystem())
                 .Add (new BusinessViewSystem())

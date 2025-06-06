@@ -68,12 +68,14 @@ namespace BusinessClicker.Systems
 
             if (business.Upgrade1Button.ClickedThisFrame)
             {
+                business.Upgrade1Button.interactable = false;
                 ApplyUpgrade1(ref business);
                 _upgrade1EventPool.Add(entity);
             }
 
             if (business.Upgrade2Button.ClickedThisFrame)
             {
+                business.Upgrade2Button.interactable = false;
                 ApplyUpgrade2(ref business);
                 _upgrade2EventPool.Add(entity);
             }

@@ -1,0 +1,167 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdab95b61cdc4a7faab2c43da18fc8ad, type: 3}
+  m_Name: TermsList
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: Businesses
+      Entry: 7
+      Data: 0|System.Collections.Generic.Dictionary`2[[System.Int32, mscorlib],[BusinessClicker.SO.BusinessTerms,
+        Assembly-CSharp]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 1|System.Collections.Generic.GenericEqualityComparer`1[[System.Int32,
+        mscorlib]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 5
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 0
+    - Name: $v
+      Entry: 7
+      Data: 2|BusinessClicker.SO.BusinessTerms, Assembly-CSharp
+    - Name: Name
+      Entry: 1
+      Data: "\u0411\u0438\u0437\u043D\u0435\u0441 1"
+    - Name: Upgrade1
+      Entry: 1
+      Data: "\u0423\u043B\u0443\u0447\u0448\u0435\u043D\u0438\u0435 1"
+    - Name: Upgrade2
+      Entry: 1
+      Data: "\u0423\u043B\u0443\u0447\u0448\u0435\u043D\u0438\u0435 2"
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 1
+    - Name: $v
+      Entry: 7
+      Data: 3|BusinessClicker.SO.BusinessTerms, Assembly-CSharp
+    - Name: Name
+      Entry: 1
+      Data: "\u0411\u0438\u0437\u043D\u0435\u0441 2"
+    - Name: Upgrade1
+      Entry: 1
+      Data: "\u0423\u043B\u0443\u0447\u0448\u0435\u043D\u0438\u0435 1"
+    - Name: Upgrade2
+      Entry: 1
+      Data: "\u0423\u043B\u0443\u0447\u0448\u0435\u043D\u0438\u0435 2"
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 2
+    - Name: $v
+      Entry: 7
+      Data: 4|BusinessClicker.SO.BusinessTerms, Assembly-CSharp
+    - Name: Name
+      Entry: 1
+      Data: "\u0411\u0438\u0437\u043D\u0435\u0441 3"
+    - Name: Upgrade1
+      Entry: 1
+      Data: "\u0423\u043B\u0443\u0447\u0448\u0435\u043D\u0438\u0435 1"
+    - Name: Upgrade2
+      Entry: 1
+      Data: "\u0423\u043B\u0443\u0447\u0448\u0435\u043D\u0438\u0435 2"
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 3
+    - Name: $v
+      Entry: 7
+      Data: 5|BusinessClicker.SO.BusinessTerms, Assembly-CSharp
+    - Name: Name
+      Entry: 1
+      Data: "\u0411\u0438\u0437\u043D\u0435\u0441 4"
+    - Name: Upgrade1
+      Entry: 1
+      Data: "\u0423\u043B\u0443\u0447\u0448\u0435\u043D\u0438\u0435 1"
+    - Name: Upgrade2
+      Entry: 1
+      Data: "\u0423\u043B\u0443\u0447\u0448\u0435\u043D\u0438\u0435 2"
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 4
+    - Name: $v
+      Entry: 7
+      Data: 6|BusinessClicker.SO.BusinessTerms, Assembly-CSharp
+    - Name: Name
+      Entry: 1
+      Data: "\u0411\u0438\u0437\u043D\u0435\u0441 5"
+    - Name: Upgrade1
+      Entry: 1
+      Data: "\u0423\u043B\u0443\u0447\u0448\u0435\u043D\u0438\u0435 1"
+    - Name: Upgrade2
+      Entry: 1
+      Data: "\u0423\u043B\u0443\u0447\u0448\u0435\u043D\u0438\u0435 2"
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  Income: "\u0414\u043E\u0445\u043E\u0434"
+  Price: "\u0426\u0435\u043D\u0430"
+  Purchased: "\u041A\u0443\u043F\u043B\u0435\u043D\u043E"
+  Currency: $

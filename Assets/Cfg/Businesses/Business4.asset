@@ -12,15 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1a109f26ae54539be2ad37a842f1574, type: 3}
   m_Name: Business4
   m_EditorClassIdentifier: 
-  Name: "\u0411\u0438\u0437\u043D\u0435\u0441 4"
+  Id: 3
   IncomeFrequency: 17
   BasicPrice: 1000
   BasicIncome: 1000
   Upgrade1:
-    Name: "\u0423\u043B\u0443\u0447\u0448\u0435\u043D\u0438\u0435 1"
     Price: 15000
     IncomeMultiplier: 100
   Upgrade2:
-    Name: "\u0423\u043B\u0443\u0447\u0448\u0435\u043D\u0438\u0435 2"
     Price: 50000
     IncomeMultiplier: 200

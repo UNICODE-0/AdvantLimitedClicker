@@ -7,7 +7,7 @@ namespace BusinessClicker.SO
     [CreateAssetMenu(fileName = "BusinessCfg", menuName = "ScriptableObjects/BusinessCfg", order = 1)]
     public class BusinessCfg : ScriptableObject
     {
-        public string Name;
+        public int Id;
         
         [Unit(Units.Second)]
         [MinValue(1)]
@@ -31,8 +31,6 @@ namespace BusinessClicker.SO
     [Serializable]
     public class BusinessUpgrade
     {
-        public string Name;
-        
         [MinValue(1)]
         public float Price = 50;
         
