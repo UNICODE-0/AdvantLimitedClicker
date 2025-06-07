@@ -4,6 +4,8 @@ using UnityEngine;
 
 namespace BusinessClicker.Mono.Providers
 {
+    // Не стал тратить время на реализацию удаления компонентов/сущностей,
+    // т.к. объекты на сцене не удаляются/выключаются в рантайме 
     public class EntityProvider : MonoBehaviour
     {
         public static readonly Dictionary<int, int> Entities = new();
