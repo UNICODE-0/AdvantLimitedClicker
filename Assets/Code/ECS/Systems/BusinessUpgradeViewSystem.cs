@@ -95,7 +95,6 @@ namespace BusinessClicker.Systems
                             UpdateUpgradeStatus(businessButtons.Upgrade1Button, business.Upgrade1Status, ref business.Cfg.Upgrade1,
                                 ref businessUpgradeView.Upgrade1View);
                             UpdateIncome(ref business, ref businessView);
-                            _upgradeEventPool.Del(entity);
                             break;
                         case UpgradeVariant.Second:
                             UpdateUpgradeStatus(businessButtons.Upgrade2Button, business.Upgrade2Status, ref business.Cfg.Upgrade2,
