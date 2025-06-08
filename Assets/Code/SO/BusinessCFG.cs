@@ -4,6 +4,8 @@ using UnityEngine;
 
 namespace BusinessClicker.SO
 {
+    // Возможность изменения количества улучшений у бизнеса (BusinessUpgrade) не реализовывал,
+    // так как в требованиях указано: "расширяемость кода обеспечивать не нужно"
     [CreateAssetMenu(fileName = "BusinessCfg", menuName = "ScriptableObjects/BusinessCfg", order = 1)]
     public class BusinessCfg : ScriptableObject
     {
